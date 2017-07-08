@@ -96,7 +96,6 @@ public:
 
     // Build B-spline
     BSpline build() const;
-    BSpline* build2() const;
 
 private:
     Builder();

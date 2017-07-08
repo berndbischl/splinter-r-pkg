@@ -56,7 +56,8 @@ SEXP bsplinefit(NumericMatrix xmat, NumericVector y, int degree, int smoothing,
     .knotSpacing(ks)
     .smoothing(s)                                                      
     .alpha(alpha)
-    .build2();  
+    .build()
+    .clone(); /* creates a copy, so we get a pointer we can wrap with an XPtr smart ptr */ 
   Rcpp::XPtr<BSpline> res2(model); 
   return res2;
 }

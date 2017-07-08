@@ -23,10 +23,5 @@ Please refer to the official [SPLINTER](https://github.com/bgrimstad/splinter) p
 * All new C++ and RCPP files are under "src/rsplinter*"
 * A checkmate stub file was created under src/rsplinter_checkmate_stub.cpp, to allow arg check on
   the C++ side (but we dont really use this now) 
-* I had to hack the bsplinebuilder. The "build" function returned a BSpline object, but I needed
-  a pointer, created with "new". So I:
-  + Added factory method "build2" to "bsplinebuilder.h" which now call "new". 
-    Thats an unfortunate change to SPLINTER I could not avoid
-  + Implemented "build2" in "rsplinter_bsplinebuilder.cpp"
 
 
