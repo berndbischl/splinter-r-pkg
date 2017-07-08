@@ -18,10 +18,14 @@ Please refer to the official [SPLINTER](https://github.com/bgrimstad/splinter) p
 
 ## Technical setup
 
-* The Splinter lib was copied to the "src" dir, including "Eigen"
+* The Splinter lib was copied to the "src" dir, excluding "Eigen"
 * Makevars needed to be configured with "PKG_CPPFLAGS" to define include dirs
 * All new C++ and RCPP files are under "src/rsplinter*"
 * A checkmate stub file was created under src/rsplinter_checkmate_stub.cpp, to allow arg check on
   the C++ side (but we dont really use this now) 
+* I am linking vs RcppEigen. That works, but I had to locally fix a line of code in SPLINTER.
+  Issue is here: 
+  https://github.com/bgrimstad/splinter/issues/88
+
 
 
