@@ -12,30 +12,31 @@ using namespace std;
 
 
 // [[Rcpp::export]]
-SEXP bsplinefit(NumericMatrix xmat, NumericVector y, SEXP degree, SEXP alpha, 
-    SEXP smooth, SEXP knotspacing) {
+SEXP bsplinefit(NumericMatrix xmat, NumericVector y, int degree, int smoothing, 
+    double alpha, int knotspacing) {
   
-  
-  qassert(xmat, "M", "xmat");
-  qassert(y, "N+", "y");
-  qassert(degree, "X1", "degree");
-  int degree2 = as<int>(degree);
-  qassert(alpha, "N1[0,)", "alpha");
-  double alpha2 = as<double>(alpha);
-  qassert(smooth, "X1[0,2]", "smooth");
-  int smooth2 = as<int>(smooth);
-  qassert(knotspacing, "X1[0,2]", "knotspacing");
-  int knotspacing2 = as<int>(knotspacing);
+  /* seems like we do the arg checking in R as we need to code S3 anyhow */
+  /* also then the c++ function alone is faster */
+  /* qassert(xmat, "M", "xmat"); */
+  /* qassert(y, "N+", "y"); */
+  /* qassert(degree, "X1", "degree"); */
+  /* int degree2 = as<int>(degree); */
+  /* qassert(alpha, "N1[0,)", "alpha"); */
+  /* double alpha2 = as<double>(alpha); */
+  /* qassert(smooth, "X1[0,2]", "smooth"); */
+  /* int smooth2 = as<int>(smooth); */
+  /* qassert(knotspacing, "X1[0,2]", "knotspacing"); */
+  /* int knotspacing2 = as<int>(knotspacing); */
 
   BSpline::Smoothing s;
-  switch(smooth2) {
+  switch(smoothing) {
     case 0: s = BSpline::Smoothing::NONE; break;
     case 1: s = BSpline::Smoothing::IDENTITY; break;
     case 2: s = BSpline::Smoothing::PSPLINE; break;
   }
  
   BSpline::KnotSpacing ks;
-  switch(knotspacing2) {
+  switch(knotspacing) {
     case 0: ks = BSpline::KnotSpacing::AS_SAMPLED; break;
     case 1: ks = BSpline::KnotSpacing::EQUIDISTANT; break;
     case 2: ks = BSpline::KnotSpacing::EXPERIMENTAL; break;
@@ -51,10 +52,10 @@ SEXP bsplinefit(NumericMatrix xmat, NumericVector y, SEXP degree, SEXP alpha,
   }                                       
 
   BSpline *model = BSpline::Builder(dt)
-    .degree(degree2)
+    .degree(degree)
     .knotSpacing(ks)
     .smoothing(s)                                                      
-    .alpha(alpha2)
+    .alpha(alpha)
     .build2();  
   Rcpp::XPtr<BSpline> res2(model); 
   return res2;

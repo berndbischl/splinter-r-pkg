@@ -6,18 +6,18 @@
 using namespace Rcpp;
 
 // bsplinefit
-SEXP bsplinefit(NumericMatrix xmat, NumericVector y, SEXP degree, SEXP alpha, SEXP smooth, SEXP knotspacing);
-RcppExport SEXP splinter_bsplinefit(SEXP xmatSEXP, SEXP ySEXP, SEXP degreeSEXP, SEXP alphaSEXP, SEXP smoothSEXP, SEXP knotspacingSEXP) {
+SEXP bsplinefit(NumericMatrix xmat, NumericVector y, int degree, int smoothing, double alpha, int knotspacing);
+RcppExport SEXP splinter_bsplinefit(SEXP xmatSEXP, SEXP ySEXP, SEXP degreeSEXP, SEXP smoothingSEXP, SEXP alphaSEXP, SEXP knotspacingSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericMatrix >::type xmat(xmatSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
-    Rcpp::traits::input_parameter< SEXP >::type degree(degreeSEXP);
-    Rcpp::traits::input_parameter< SEXP >::type alpha(alphaSEXP);
-    Rcpp::traits::input_parameter< SEXP >::type smooth(smoothSEXP);
-    Rcpp::traits::input_parameter< SEXP >::type knotspacing(knotspacingSEXP);
-    rcpp_result_gen = Rcpp::wrap(bsplinefit(xmat, y, degree, alpha, smooth, knotspacing));
+    Rcpp::traits::input_parameter< int >::type degree(degreeSEXP);
+    Rcpp::traits::input_parameter< int >::type smoothing(smoothingSEXP);
+    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
+    Rcpp::traits::input_parameter< int >::type knotspacing(knotspacingSEXP);
+    rcpp_result_gen = Rcpp::wrap(bsplinefit(xmat, y, degree, smoothing, alpha, knotspacing));
     return rcpp_result_gen;
 END_RCPP
 }
