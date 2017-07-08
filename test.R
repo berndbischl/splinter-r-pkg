@@ -4,6 +4,7 @@ set.seed(123)
 
 # xx = seq(0, 1, by = 0.2)
 # x = expand.grid(xx, xx)
+
 # x = as.matrix(x)
 
 
