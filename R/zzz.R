@@ -1,4 +1,4 @@
 #' @useDynLib splinter
-#' @importFrom Rcpp evalCpp
 #' @import checkmate
+#' @import stats
 NULL
