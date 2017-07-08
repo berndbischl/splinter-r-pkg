@@ -1,0 +1,6 @@
+splinter.Rcheck
+splinter_*.tar.gz
+.Rhistory
+src/*.so
+src/*.o
+
